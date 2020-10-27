@@ -39,7 +39,7 @@ const scrollTimes = (Number(process.env.scrollTimes) || 5);
 const streamerListRefresh = (Number(process.env.streamerListRefresh) || 1);
 const streamerListRefreshUnit = (process.env.streamerListRefreshUnit || 'hour'); //https://day.js.org/docs/en/manipulate/add
 
-const showBrowser = (process.env.headless || true);; // false state equ headless mode;
+const showBrowser = ((process.env.showBrowser || true) === 'true'); // false state equ headless mode;
 const proxy = (process.env.proxy || ""); // "ip:port" By https://github.com/Jan710
 const proxyAuth = (process.env.proxyAuth || "");
 
@@ -164,7 +164,7 @@ async function SetupAPI() {
 
 function stringToBoolean(string){
   var ret, str
-  str = string.toLowerCase().trim()
+  str = string.toString().toLowerCase().trim()
   if (DebugMode >=2) {console.log('stringToBoolean INPUT: ' + str)}
   switch(str){
     case 'false': case 'no': case '0': case null: { ret = false; break; }
