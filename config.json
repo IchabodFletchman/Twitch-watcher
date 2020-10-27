@@ -1,7 +1,8 @@
 {
-  "token": "TOKEN",
+  "IgnoreRandomChannels": "false",
+  "token": "Chrome_Twitch_Token",
   "game": "FIFA%2021",
   "exec": "/usr/bin/chromium-browser",
-  "ApiAuthToken":"7oa8qymln6edk16ht487mp84np5swe",
-  "streamersUrl" : "https://www.twitch.tv/directory/game/FIFA%2021"
+  "ApiAuthToken":"AuthToken",
+  "streamersUrl" : "https://www.twitch.tv/directory/game/FIFA%2021?tl=c2542d6d-cd10-4532-919b-3d19f30a768b"
 }
