@@ -1,6 +1,6 @@
 version: '3.5'
 services:
-  valorant-watcher:
+  twitch-watcher:
     #build: . #For local build
     #image: valorant-watcher:latest #For local build
     image: gdomod/twitch-watcher:latest
