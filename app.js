@@ -346,11 +346,19 @@ async function viewRandomPage(page, firstRun, streamer_last_refresh) {
         streamer_last_refresh = dayjs().add(streamerListRefresh, streamerListRefreshUnit); //https://github.com/D3vl0per/Valorant-watcher/issues/25
       }
 
-      // Pick a stream, get a random sleep timer, and attempt to view the stream
-      let watch = streamers[getRandomInt(0, streamers.length - 1)]; //https://github.com/D3vl0per/Valorant-watcher/issues/27
-      var SleepTimer = getRandomInt(minWatching, maxWatching); //Set watching timer
-      await ViewURL(page, watch, SleepTimer, firstRun);
-      return streamer_last_refresh
+	  if (streamers.length > 0) {
+		  // Pick a stream, get a random sleep timer, and attempt to view the stream
+		  let watch = streamers[getRandomInt(0, streamers.length - 1)]; //https://github.com/D3vl0per/Valorant-watcher/issues/27
+		  var SleepTimer = getRandomInt(minWatching, maxWatching); //Set watching timer
+		  await ViewURL(page, watch, SleepTimer, firstRun);
+		  return streamer_last_refresh;
+	  } else {
+	    console.log("No Streamers found, wait and try again...");
+		var SleepTimer = getRandomInt(2, 10);
+		await page.waitFor(SleepTimer * 60000);
+		streamers = null;
+		return;
+	  }
 
     } catch (e) {
       console.log('🤬 Error: ', e);
@@ -433,7 +441,7 @@ async function getAllStreamer(page) {
   console.log('🔐 Checking login...');
   await checkLogin(page);
   console.log('📡 Checking active streamers...');
-  await scroll(page, scrollTimes);
+  //await scroll(page, scrollTimes);
   const jquery = await queryOnWebsite(page, channelsQuery);
   streamers = null;
   streamers = new Array();
